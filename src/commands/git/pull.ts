@@ -48,7 +48,7 @@ type PullStepState<T extends State = State> = ExcludeSome<StepState<T>, 'repos',
 export class PullGitCommand extends QuickCommand<State> {
 	constructor(container: Container, args?: PullGitCommandArgs) {
 		super(container, 'pull', 'pull', 'Pull', {
-			description: 'fetches and integrates changes from a remote into the current branch',
+			description: '获取并集成远程更改到当前分支',
 		});
 
 		let counter = 0;
@@ -147,12 +147,12 @@ export class PullGitCommand extends QuickCommand<State> {
 			step = this.createConfirmStep(appendReposToTitle(`Confirm ${context.title}`, state, context), [
 				createFlagsQuickPickItem<Flags>(state.flags, [], {
 					label: this.title,
-					detail: `Will pull ${state.repos.length} repos`,
+					detail: `将拉取 ${state.repos.length} 个仓库`,
 				}),
 				createFlagsQuickPickItem<Flags>(state.flags, ['--rebase'], {
-					label: `${this.title} with Rebase`,
+					label: `${this.title} 并变基`,
 					description: '--rebase',
-					detail: `Will pull ${state.repos.length} repos by rebasing`,
+					detail: `将通过变基拉取 ${state.repos.length} 个仓库`,
 				}),
 			]);
 		} else if (isBranchReference(state.reference)) {
@@ -162,7 +162,7 @@ export class PullGitCommand extends QuickCommand<State> {
 					[],
 					createDirectiveQuickPickItem(Directive.Cancel, true, {
 						label: `Cancel ${this.title}`,
-						detail: 'Cannot pull a remote branch',
+						detail: '无法拉取远程分支',
 					}),
 				);
 			} else {
@@ -175,18 +175,14 @@ export class PullGitCommand extends QuickCommand<State> {
 						[],
 						createDirectiveQuickPickItem(Directive.Cancel, true, {
 							label: `Cancel ${this.title}`,
-							detail: 'Cannot pull a branch until it has been published',
+							detail: '在分支发布之前无法拉取',
 						}),
 					);
 				} else {
 					step = this.createConfirmStep(appendReposToTitle(`Confirm ${context.title}`, state, context), [
 						createFlagsQuickPickItem<Flags>(state.flags, [], {
 							label: this.title,
-							detail: `Will pull${
-								branch.state.behind
-									? ` ${pluralize('commit', branch.state.behind)} into ${getReferenceLabel(branch)}`
-									: ` into ${getReferenceLabel(branch)}`
-							}`,
+							detail: `将${branch.state.behind ? `拉取 ${pluralize('个提交', branch.state.behind)} 到 ${getReferenceLabel(branch)}` : `拉取到 ${getReferenceLabel(branch)}`}`,
 						}),
 					]);
 				}

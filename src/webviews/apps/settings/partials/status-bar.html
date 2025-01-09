@@ -2,17 +2,17 @@
 	<div class="section__header">
 		<div class="setting__input setting__input--big">
 			<input id="statusBar.enabled" name="statusBar.enabled" type="checkbox" data-setting />
-			<label for="statusBar.enabled">Status Bar Blame</label>
+			<label for="statusBar.enabled">状态栏责备</label>
 			<a
 				class="link__learn-more"
-				title="Learn more"
+				title="了解更多"
 				href="https://help.gitkraken.com/gitlens/gitlens-features/#status-bar-blame"
 			>
 				<i class="icon icon__info"></i>
 			</a>
 		</div>
 
-		<p class="section__header-hint">Adds a Git blame annotation about the current line to the status bar</p>
+		<p class="section__header-hint">在状态栏中添加关于当前行的 Git 责备注释</p>
 	</div>
 
 	<div class="section__collapsible">
@@ -29,19 +29,18 @@
 								disabled
 							/>
 							<label for="statusBar.pullRequests.enabled"
-								>Show the Pull Request (if any) that introduced the commit</label
+								>显示引入提交的拉取请求（如果有）</label
 							>
 						</div>
 
 						<p class="setting__hint hidden" data-visibility="statusBar.pullRequests.enabled">
-							<i class="icon icon__info"></i>Requires a connection to a supported remote service (e.g.
-							GitHub)
+							<i class="icon icon__info"></i>需要连接到支持的远程服务（例如 GitHub）
 						</p>
 					</div>
 
 					<div class="setting" data-enablement="statusBar.enabled">
 						<div class="setting__input setting__input--format">
-							<label for="statusBar.format">Annotation&nbsp;format</label>
+							<label for="statusBar.format">注释格式</label>
 							<input
 								id="statusBar.format"
 								name="statusBar.format"
@@ -53,13 +52,13 @@
 								data-popup-trigger
 								disabled
 							/>
-							<label for="statusBar.format" title="See available tokens">
+							<label for="statusBar.format" title="查看可用标记">
 								<i class="icon icon__chevron-down"></i>
 							</label>
 						</div>
 						<div id="statusBar.format.popup" class="popup hidden"></div>
 						<span class="setting__hint"
-							>Example:
+							>示例：
 							<span
 								data-setting-preview="statusBar.format"
 								data-setting-preview-type="commit"
@@ -70,11 +69,11 @@
 
 					<div class="setting" data-enablement="statusBar.enabled">
 						<div class="setting__input">
-							<label for="statusBar.alignment">Position the annotation on the</label>
+							<label for="statusBar.alignment">将注释放置在</label>
 							<div class="select-container">
 								<select id="statusBar.alignment" name="statusBar.alignment" data-setting disabled>
-									<option value="left">left</option>
-									<option value="right">right</option>
+									<option value="left">左侧</option>
+									<option value="right">右侧</option>
 								</select>
 							</div>
 						</div>
@@ -82,50 +81,26 @@
 
 					<div class="setting" data-enablement="statusBar.enabled">
 						<div class="setting__input">
-							<label class="nowrap" for="statusBar.command">When clicked</label>
+							<label class="nowrap" for="statusBar.command">点击时</label>
 							<div class="select-container">
 								<select id="statusBar.command" name="statusBar.command" data-setting disabled>
-									<option value="gitlens.toggleFileBlame">toggles the file blame</option>
-									<option value="gitlens.toggleFileHeatmap">toggles the file heatmap</option>
-									<option value="gitlens.toggleFileChanges">
-										toggles the file changes since before the commit
-									</option>
-									<option value="gitlens.toggleFileChangesOnly">
-										toggles the file changes from the commit
-									</option>
-									<option value="gitlens.toggleCodeLens">toggles the Git CodeLens</option>
-									<option value="gitlens.diffWithPrevious">
-										opens line changes with the previous revision
-									</option>
-									<option value="gitlens.diffWithWorking">
-										opens line changes with the working file
-									</option>
-									<option value="gitlens.revealCommitInView">
-										reveals the commit in the Side Bar
-									</option>
-									<option value="gitlens.showCommitsInView">shows details of the commit</option>
-									<option value="gitlens.showQuickCommitDetails">
-										shows quick details of the commit (default)
-									</option>
-									<option value="gitlens.showQuickCommitFileDetails">
-										shows quick file details of the commit
-									</option>
-									<option value="gitlens.showQuickFileHistory">shows the current file history</option>
-									<option value="gitlens.showQuickRepoHistory">
-										shows the current branch history
-									</option>
-									<option value="gitlens.openCommitOnRemote">
-										opens the commit on the remote service (when available)
-									</option>
-									<option value="gitlens.copyRemoteCommitUrl">
-										copies the remote commit URL to the clipboard (when available)
-									</option>
-									<option value="gitlens.openFileOnRemote">
-										opens the file revision on the remote service (when available)
-									</option>
-									<option value="gitlens.copyRemoteFileUrl">
-										copies the remote file revision URL to the clipboard (when available)
-									</option>
+									<option value="gitlens.toggleFileBlame">切换文件责备</option>
+									<option value="gitlens.toggleFileHeatmap">切换文件热图</option>
+									<option value="gitlens.toggleFileChanges">切换提交前的文件更改</option>
+									<option value="gitlens.toggleFileChangesOnly">切换来自提交的文件更改</option>
+									<option value="gitlens.toggleCodeLens">切换 Git CodeLens</option>
+									<option value="gitlens.diffWithPrevious">与上一版本比较行更改</option>
+									<option value="gitlens.diffWithWorking">与工作文件比较行更改</option>
+									<option value="gitlens.revealCommitInView">在侧边栏中显示提交</option>
+									<option value="gitlens.showCommitsInView">显示提交详情</option>
+									<option value="gitlens.showQuickCommitDetails">显示快速提交详情（默认）</option>
+									<option value="gitlens.showQuickCommitFileDetails">显示快速提交文件详情</option>
+									<option value="gitlens.showQuickFileHistory">显示当前文件历史</option>
+									<option value="gitlens.showQuickRepoHistory">显示当前分支历史</option>
+									<option value="gitlens.openCommitOnRemote">在远程服务上打开提交（如果可用）</option>
+									<option value="gitlens.copyRemoteCommitUrl">复制远程提交 URL 到剪贴板（如果可用）</option>
+									<option value="gitlens.openFileOnRemote">在远程服务上打开文件修订（如果可用）</option>
+									<option value="gitlens.copyRemoteFileUrl">复制远程文件修订 URL 到剪贴板（如果可用）</option>
 								</select>
 							</div>
 						</div>
@@ -140,11 +115,10 @@
 								data-setting
 								disabled
 							/>
-							<label for="statusBar.reduceFlicker">Reduce flashing when updating the annotation</label>
+							<label for="statusBar.reduceFlicker">更新注释时减少闪烁</label>
 						</div>
 						<p class="setting__hint">
-							Avoids clearing the previous blame information when changing lines to reduce status bar
-							"flashing"
+							在更改行时避免清除先前的责备信息以减少状态栏"闪烁"
 						</p>
 					</div>
 				</div>
@@ -195,14 +169,14 @@
 
 		<div class="section__group">
 			<p class="section__hint">
-				<i class="icon icon__info"></i> For more options, open the
+				<i class="icon icon__info"></i> 更多选项，请打开
 				<a
 					class="secondary"
-					title="Open Settings UI"
+					title="打开设置界面"
 					href="command:workbench.action.openSettings?%22gitlens.statusBar%22"
-					>Settings UI</a
+					>设置界面</a
 				>
-				and search for <b><i>gitlens.statusBar</i></b>
+				并搜索 <b><i>gitlens.statusBar</i></b>
 			</p>
 		</div>
 	</div>

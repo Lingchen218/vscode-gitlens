@@ -642,8 +642,8 @@ export class Repository implements Disposable {
 				location: ProgressLocation.Notification,
 				title:
 					opts.branch != null
-						? `${opts.pull ? 'Pulling' : 'Fetching'} ${opts.branch.name}...`
-						: `Fetching ${opts.remote ? `${opts.remote} of ` : ''}${this.formattedName}...`,
+						? `${opts.pull ? '正在拉取' : '正在获取'} ${opts.branch.name}...`
+						: `正在获取${opts.remote ? `${opts.remote} 的` : ''}${this.formattedName}...`,
 			},
 			() => this.fetchCore(opts),
 		);
@@ -662,7 +662,7 @@ export class Repository implements Disposable {
 			this.fireChange(RepositoryChange.Unknown);
 		} catch (ex) {
 			Logger.error(ex);
-			void showGenericErrorMessage('Unable to fetch repository');
+			void showGenericErrorMessage('无法获取仓库');
 		}
 	}
 
@@ -862,7 +862,7 @@ export class Repository implements Disposable {
 		return window.withProgress(
 			{
 				location: ProgressLocation.Notification,
-				title: `Pulling ${this.formattedName}...`,
+				title: `正在拉取 ${this.formattedName}...`,
 			},
 			() => this.pullCore(opts),
 		);
@@ -880,7 +880,7 @@ export class Repository implements Disposable {
 			this.fireChange(RepositoryChange.Unknown);
 		} catch (ex) {
 			Logger.error(ex);
-			void showGenericErrorMessage('Unable to pull repository');
+			void showGenericErrorMessage('无法拉取仓库');
 		}
 	}
 
@@ -930,8 +930,8 @@ export class Repository implements Disposable {
 			{
 				location: ProgressLocation.Notification,
 				title: isBranchReference(opts.reference)
-					? `${opts.publish != null ? 'Publishing ' : 'Pushing '}${opts.reference.name}...`
-					: `Pushing ${this.formattedName}...`,
+					? `${opts.publish != null ? '正在发布' : '正在推送'}${opts.reference.name}...`
+					: `正在推送 ${this.formattedName}...`,
 			},
 			() => this.pushCore(opts),
 		);
@@ -952,7 +952,7 @@ export class Repository implements Disposable {
 			this.fireChange(RepositoryChange.Unknown);
 		} catch (ex) {
 			Logger.error(ex);
-			void showGenericErrorMessage('Unable to push repository');
+			void showGenericErrorMessage('无法推送仓库');
 		}
 	}
 
@@ -1087,7 +1087,7 @@ export class Repository implements Disposable {
 		return window.withProgress(
 			{
 				location: ProgressLocation.Notification,
-				title: `Switching ${this.formattedName} to ${ref}...`,
+				title: `正在将 ${this.formattedName} 切换到 ${ref}...`,
 				cancellable: false,
 			},
 			() => this.switchCore(ref, opts),
@@ -1101,7 +1101,7 @@ export class Repository implements Disposable {
 			this.fireChange(RepositoryChange.Unknown);
 		} catch (ex) {
 			Logger.error(ex);
-			void showGenericErrorMessage('Unable to switch to reference');
+			void showGenericErrorMessage('无法切换到参考');
 		}
 	}
 

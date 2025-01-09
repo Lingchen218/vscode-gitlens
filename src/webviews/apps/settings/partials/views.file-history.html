@@ -1,10 +1,10 @@
 <section id="file-history-view" class="section--settings section--collapsible" tabindex="-1">
 	<div class="section__header">
 		<h2>
-			File History view
+			文件历史视图
 			<a
 				class="link__learn-more"
-				title="Learn more"
+				title="了解更多"
 				href="https://help.gitkraken.com/gitlens/side-bar/#file-history-view"
 			>
 				<i class="icon icon__info"></i>
@@ -12,15 +12,14 @@
 		</h2>
 
 		<p class="section__header-hint">
-			Adds a
+			添加一个
 			<a
 				class="command command--show-view"
-				title="Show View in Side Bar"
+				title="在侧边栏中显示视图"
 				href="command:gitlens.showFileHistoryView"
-				>File History view</a
+				>文件历史视图</a
 			>
-			to visualize, navigate, and explore the revision history of the current file, a specified file or folder, or
-			just the selected lines of the current file
+			来可视化、导航和探索当前文件、指定文件或文件夹的修订历史，或仅当前文件的选定行
 		</p>
 	</div>
 
@@ -36,13 +35,13 @@
 								type="checkbox"
 								data-setting
 							/>
-							<label for="views.fileHistory.avatars">Use author avatars</label>
+							<label for="views.fileHistory.avatars">使用作者头像</label>
 						</div>
 					</div>
 
 					<div class="setting">
 						<div class="setting__input">
-							<label class="non-interactive">Applies only when showing folder history:</label>
+							<label class="non-interactive">仅在显示文件夹历史时适用：</label>
 						</div>
 					</div>
 
@@ -59,11 +58,11 @@
 												data-setting
 											/>
 											<label for="views.fileHistory.pullRequests.enabled"
-												>Show associated pull requests</label
+												>显示关联的拉取请求</label
 											>
 										</div>
 										<p class="setting__hint">
-											Requires a connection to a supported remote service (e.g. GitHub)
+											需要连接到支持的远程服务（例如 GitHub）
 										</p>
 									</div>
 
@@ -78,7 +77,7 @@
 													disabled
 												/>
 												<label for="views.fileHistory.pullRequests.showForCommits"
-													>Show the pull request that introduced each commit</label
+													>显示引入每个提交的拉取请求</label
 												>
 											</div>
 										</div>
@@ -89,35 +88,35 @@
 
 						<div class="setting">
 							<div class="setting__input">
-								<label for="views.fileHistory.files.layout">Layout files</label>
+								<label for="views.fileHistory.files.layout">文件布局</label>
 								<div class="select-container">
 									<select
 										id="views.fileHistory.files.layout"
 										name="views.fileHistory.files.layout"
 										data-setting
 									>
-										<option value="auto">automatically</option>
-										<option value="list">as a list</option>
-										<option value="tree">as a tree</option>
+										<option value="auto">自动</option>
+										<option value="list">列表</option>
+										<option value="tree">树形</option>
 									</select>
 								</div>
 							</div>
 							<p class="setting__hint" data-visibility="views.fileHistory.files.layout =auto">
-								Chooses the best layout based on the number of files at each nesting level
+								根据每个嵌套级别的文件数量选择最佳布局
 							</p>
 						</div>
 
 						<div class="setting">
 							<div class="setting__input">
-								<label for="views.fileHistory.files.icon">File icons</label>
+								<label for="views.fileHistory.files.icon">文件图标</label>
 								<div class="select-container">
 									<select
 										id="views.fileHistory.files.icon"
 										name="views.fileHistory.files.icon"
 										data-setting
 									>
-										<option value="type">show file type (default)</option>
-										<option value="status">show file status</option>
+										<option value="type">显示文件类型（默认）</option>
+										<option value="status">显示文件状态</option>
 									</select>
 								</div>
 							</div>
@@ -131,10 +130,10 @@
 									type="checkbox"
 									data-setting
 								/>
-								<label for="views.fileHistory.files.compact">Use compact file layout</label>
+								<label for="views.fileHistory.files.compact">使用紧凑文件布局</label>
 							</div>
 							<p class="setting__hint">
-								Compacts (flattens) unnecessary nesting when using a tree layouts
+								在使用树形布局时压缩（扁平化）不必要的嵌套
 							</p>
 						</div>
 					</div>
@@ -162,14 +161,14 @@
 
 		<div class="section__group">
 			<p class="section__hint">
-				<i class="icon icon__info"></i> For more options, open the
+				<i class="icon icon__info"></i> 更多选项，请打开
 				<a
 					class="secondary"
-					title="Open Settings UI"
+					title="打开设置界面"
 					href="command:workbench.action.openSettings?%22gitlens.views.fileHistory%22"
-					>Settings UI</a
+					>设置界面</a
 				>
-				and search for <b><i>gitlens.views.fileHistory</i></b> or
+				并搜索 <b><i>gitlens.views.fileHistory</i></b> 或
 				<b><i>gitlens.views</i></b>
 			</p>
 		</div>

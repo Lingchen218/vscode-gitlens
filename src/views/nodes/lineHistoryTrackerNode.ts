@@ -55,7 +55,7 @@ export class LineHistoryTrackerNode extends SubscribeableViewNode<
 			if (!this.hasUri) {
 				this.view.description = undefined;
 
-				this.view.message = 'There are no editors open that can provide line history information.';
+				this.view.message = '没有可以提供行历史信息的已打开编辑器。';
 				return [];
 			}
 
@@ -65,12 +65,12 @@ export class LineHistoryTrackerNode extends SubscribeableViewNode<
 			if (selection == null) {
 				this.view.description = undefined;
 
-				this.view.message = 'There was no selection provided for line history.';
+				this.view.message = '没有为行历史提供选择。';
 				this.view.description = `${this.uri.fileName}${
 					this.uri.sha
 						? ` ${this.uri.sha === deletedOrMissing ? this.uri.shortSha : `(${this.uri.shortSha})`}`
 						: ''
-				}${!this.followingEditor ? ' (pinned)' : ''}`;
+				}${!this.followingEditor ? ' (已固定)' : ''}`;
 				return [];
 			}
 
@@ -102,7 +102,7 @@ export class LineHistoryTrackerNode extends SubscribeableViewNode<
 	getTreeItem(): TreeItem {
 		this.splatted = false;
 
-		const item = new TreeItem('Line History', TreeItemCollapsibleState.Expanded);
+		const item = new TreeItem('行历史', TreeItemCollapsibleState.Expanded);
 		item.contextValue = ContextValues.ActiveLineHistory;
 
 		void this.ensureSubscription();
@@ -123,8 +123,8 @@ export class LineHistoryTrackerNode extends SubscribeableViewNode<
 	async changeBase() {
 		const pick = await showReferencePicker(
 			this.uri.repoPath!,
-			'Change Line History Base',
-			'Choose a reference to set as the new base',
+			'更改行历史基准',
+			'选择一个引用作为新的基准',
 			{
 				allowRevisions: true,
 				picked: this._base,

@@ -404,34 +404,34 @@ export class GlCommitDetailsApp extends LitElement {
 	}
 
 	renderWipTooltipContent() {
-		if (this.wipStatus == null) return 'Overview';
+		if (this.wipStatus == null) return '概览';
 
 		return html`
-			Overview of &nbsp;<code-icon icon="git-branch" size="12"></code-icon
+			分支概览 &nbsp;<code-icon icon="git-branch" size="12"></code-icon
 			><span class="md-code">${this.wipStatus.branch}</span>
 			${when(
 				this.wipStatus.status === 'both',
 				() =>
 					html`<hr />
-						<span class="md-code">${this.wipStatus!.branch}</span> is
-						${pluralize('commit', this.wipStatus!.behind)} behind and
-						${pluralize('commit', this.wipStatus!.ahead)} ahead of
+						<span class="md-code">${this.wipStatus!.branch}</span> 落后
+						${pluralize('commit', this.wipStatus!.behind)} 并领先
+						${pluralize('commit', this.wipStatus!.ahead)}
 						<span class="md-code">${this.wipStatus!.upstream ?? 'origin'}</span>`,
 			)}
 			${when(
 				this.wipStatus.status === 'behind',
 				() =>
 					html`<hr />
-						<span class="md-code">${this.wipStatus!.branch}</span> is
-						${pluralize('commit', this.wipStatus!.behind)} behind
+						<span class="md-code">${this.wipStatus!.branch}</span> 落后
+						${pluralize('commit', this.wipStatus!.behind)}
 						<span class="md-code">${this.wipStatus!.upstream ?? 'origin'}</span>`,
 			)}
 			${when(
 				this.wipStatus.status === 'ahead',
 				() =>
 					html`<hr />
-						<span class="md-code">${this.wipStatus!.branch}</span> is
-						${pluralize('commit', this.wipStatus!.ahead)} ahead of
+						<span class="md-code">${this.wipStatus!.branch}</span> 领先
+						${pluralize('commit', this.wipStatus!.ahead)}
 						<span class="md-code"> ${this.wipStatus!.upstream ?? 'origin'}</span>`,
 			)}
 			${when(
@@ -441,6 +441,7 @@ export class GlCommitDetailsApp extends LitElement {
 						${pluralize('working change', this.wipStatus!.working)}`,
 			)}
 		`;
+	}
 	}
 
 	renderTopSection() {
@@ -456,20 +457,20 @@ export class GlCommitDetailsApp extends LitElement {
 						<span slot="content"
 							>${this.state?.commit != null
 								? !this.isStash
-									? html`Inspect Commit
+									? html`检查提交
 											<span class="md-code"
 												><code-icon icon="git-commit"></code-icon> ${this.state.commit
 													.shortSha}</span
 											>`
-									: html`Inspect Stash
+									: html`检查储藏
 											<span class="md-code"
 												><code-icon icon="gl-stashes-view"></code-icon> #${this.state.commit
 													.stashNumber}</span
 											>`
-								: 'Inspect'}${this.state?.pinned
-								? html`(pinned)
+								: '检查'}${this.state?.pinned
+								? html`(已固定)
 										<hr />
-										Automatic following is suspended while pinned`
+										固定时自动跟随已暂停`
 								: ''}</span
 						>
 					</gl-tooltip>

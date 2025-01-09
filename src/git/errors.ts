@@ -23,7 +23,7 @@ export class ApplyPatchCommitError extends Error {
 	readonly reason: ApplyPatchCommitErrorReason | undefined;
 
 	constructor(reason: ApplyPatchCommitErrorReason, message?: string, original?: Error) {
-		message ||= 'Unable to apply patch';
+		message ||= '无法应用补丁';
 		super(message);
 
 		this.original = original;
@@ -41,7 +41,7 @@ export class BlameIgnoreRevsFileError extends Error {
 		public readonly fileName: string,
 		public readonly original?: Error,
 	) {
-		super(`Invalid blame.ignoreRevsFile: '${fileName}'`);
+		super(`无效的 blame.ignoreRevsFile: '${fileName}'`);
 
 		Error.captureStackTrace?.(this, BlameIgnoreRevsFileError);
 	}
@@ -56,7 +56,7 @@ export class BlameIgnoreRevsFileBadRevisionError extends Error {
 		public readonly revision: string,
 		public readonly original?: Error,
 	) {
-		super(`Invalid revision in blame.ignoreRevsFile: '${revision}'`);
+		super(`blame.ignoreRevsFile 中的修订版本无效: '${revision}'`);
 
 		Error.captureStackTrace?.(this, BlameIgnoreRevsFileBadRevisionError);
 	}
@@ -116,7 +116,7 @@ export class StashPushError extends Error {
 		let message;
 		let reason: StashPushErrorReason | undefined;
 		if (messageOrReason == null) {
-			message = 'Unable to stash';
+			message = '无法储藏';
 		} else if (typeof messageOrReason === 'string') {
 			message = messageOrReason;
 			reason = undefined;
@@ -124,14 +124,13 @@ export class StashPushError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case StashPushErrorReason.ConflictingStagedAndUnstagedLines:
-					message =
-						'Changes were stashed, but the working tree cannot be updated because at least one file has staged and unstaged changes on the same line(s)';
+					message = '更改已储藏，但由于至少一个文件在相同行上有已暂存和未暂存的更改，工作树无法更新';
 					break;
 				case StashPushErrorReason.NothingToSave:
-					message = 'No files to stash';
+					message = '没有要储藏的文件';
 					break;
 				default:
-					message = 'Unable to stash';
+					message = '无法储藏';
 			}
 		}
 		super(message);
@@ -171,7 +170,7 @@ export class PushError extends Error {
 		remote?: string,
 	) {
 		let message;
-		const baseMessage = `Unable to push${branch ? ` branch '${branch}'` : ''}${remote ? ` to ${remote}` : ''}`;
+		const baseMessage = `无法推送${branch ? ` 分支 '${branch}'` : ''}${remote ? ` 到 ${remote}` : ''}`;
 		let reason: PushErrorReason | undefined;
 		if (messageOrReason == null) {
 			message = baseMessage;
@@ -183,28 +182,28 @@ export class PushError extends Error {
 
 			switch (reason) {
 				case PushErrorReason.RemoteAhead:
-					message = `${baseMessage} because the remote contains work that you do not have locally. Try fetching first.`;
+					message = `${baseMessage}，因为远程包含您本地没有的工作。请先获取。`;
 					break;
 				case PushErrorReason.TipBehind:
-					message = `${baseMessage} as it is behind its remote counterpart. Try pulling first.`;
+					message = `${baseMessage}，因为它落后于其远程副本。请先拉取。`;
 					break;
 				case PushErrorReason.PushRejected:
-					message = `${baseMessage} because some refs failed to push or the push was rejected. Try pulling first.`;
+					message = `${baseMessage}，因为某些引用推送失败或推送被拒绝。请先拉取。`;
 					break;
 				case PushErrorReason.PushRejectedWithLease:
 				case PushErrorReason.PushRejectedWithLeaseIfIncludes:
-					message = `Unable to force push${branch ? ` branch '${branch}'` : ''}${
-						remote ? ` to ${remote}` : ''
-					} because some refs failed to push or the push was rejected. The tip of the remote-tracking branch has been updated since the last checkout. Try pulling first.`;
+					message = `无法强制推送${branch ? ` 分支 '${branch}'` : ''}${
+						remote ? ` 到 ${remote}` : ''
+					}，因为某些引用推送失败或推送被拒绝。自上次检出以来，远程跟踪分支的提示已更新。请先拉取。`;
 					break;
 				case PushErrorReason.PermissionDenied:
-					message = `${baseMessage} because you don't have permission to push to this remote repository.`;
+					message = `${baseMessage}，因为您没有权限推送到此远程仓库。`;
 					break;
 				case PushErrorReason.RemoteConnection:
-					message = `${baseMessage} because the remote repository could not be reached.`;
+					message = `${baseMessage}，因为无法连接到远程仓库。`;
 					break;
 				case PushErrorReason.NoUpstream:
-					message = `${baseMessage} because it has no upstream branch.`;
+					message = `${baseMessage}，因为它没有上游分支。`;
 					break;
 				default:
 					message = baseMessage;
@@ -245,7 +244,7 @@ export class PullError extends Error {
 	constructor(messageOrReason: string | PullErrorReason | undefined, original?: Error) {
 		let message;
 		let reason: PullErrorReason | undefined;
-		const baseMessage = `Unable to pull`;
+		const baseMessage = `无法拉取`;
 		if (messageOrReason == null) {
 			message = baseMessage;
 		} else if (typeof messageOrReason === 'string') {
@@ -255,34 +254,34 @@ export class PullError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case PullErrorReason.Conflict:
-					message = `${baseMessage} due to conflicts.`;
+					message = `${baseMessage}，因为存在冲突。`;
 					break;
 				case PullErrorReason.GitIdentity:
-					message = `${baseMessage} because you have not yet set up your Git identity.`;
+					message = `${baseMessage}，因为您尚未设置 Git 身份。`;
 					break;
 				case PullErrorReason.RemoteConnection:
-					message = `${baseMessage} because the remote repository could not be reached.`;
+					message = `${baseMessage}，因为无法连接到远程仓库。`;
 					break;
 				case PullErrorReason.UnstagedChanges:
-					message = `${baseMessage} because you have unstaged changes.`;
+					message = `${baseMessage}，因为您有未暂存的更改。`;
 					break;
 				case PullErrorReason.UnmergedFiles:
-					message = `${baseMessage} because you have unmerged files.`;
+					message = `${baseMessage}，因为您有未合并的文件。`;
 					break;
 				case PullErrorReason.UncommittedChanges:
-					message = `${baseMessage} because you have uncommitted changes.`;
+					message = `${baseMessage}，因为您有未提交的更改。`;
 					break;
 				case PullErrorReason.OverwrittenChanges:
-					message = `${baseMessage} because local changes to some files would be overwritten.`;
+					message = `${baseMessage}，因为某些文件的本地更改将被覆盖。`;
 					break;
 				case PullErrorReason.RefLocked:
-					message = `${baseMessage} because a local ref could not be updated.`;
+					message = `${baseMessage}，因为无法更新本地引用。`;
 					break;
 				case PullErrorReason.RebaseMultipleBranches:
-					message = `${baseMessage} because you are trying to rebase onto multiple branches.`;
+					message = `${baseMessage}，因为您正在尝试变基到多个分支。`;
 					break;
 				case PullErrorReason.TagConflict:
-					message = `${baseMessage} because a local tag would be overwritten.`;
+					message = `${baseMessage}，因为本地标签将被覆盖。`;
 					break;
 				default:
 					message = baseMessage;
@@ -320,7 +319,7 @@ export class FetchError extends Error {
 		remote?: string,
 	) {
 		let message;
-		const baseMessage = `Unable to fetch${branch ? ` branch '${branch}'` : ''}${remote ? ` from ${remote}` : ''}`;
+		const baseMessage = `无法获取${branch ? ` 分支 '${branch}'` : ''}${remote ? ` 从 ${remote}` : ''}`;
 		let reason: FetchErrorReason | undefined;
 		if (messageOrReason == null) {
 			message = baseMessage;
@@ -331,13 +330,13 @@ export class FetchError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case FetchErrorReason.NoFastForward:
-					message = `${baseMessage} as it cannot be fast-forwarded`;
+					message = `${baseMessage}，因为它无法被快速转发`;
 					break;
 				case FetchErrorReason.NoRemote:
-					message = `${baseMessage} without a remote repository specified.`;
+					message = `${baseMessage}，因为没有指定远程仓库`;
 					break;
 				case FetchErrorReason.RemoteConnection:
-					message = `${baseMessage}. Could not connect to the remote repository.`;
+					message = `${baseMessage}。无法连接到远程仓库。`;
 					break;
 				default:
 					message = baseMessage;
@@ -369,7 +368,7 @@ export class CherryPickError extends Error {
 	constructor(message?: string, original?: Error);
 	constructor(messageOrReason: string | CherryPickErrorReason | undefined, original?: Error, sha?: string) {
 		let message;
-		const baseMessage = `Unable to cherry-pick${sha ? ` commit '${sha}'` : ''}`;
+		const baseMessage = `无法cherry-pick${sha ? ` 提交 '${sha}'` : ''}`;
 		let reason: CherryPickErrorReason | undefined;
 		if (messageOrReason == null) {
 			message = baseMessage;
@@ -380,10 +379,10 @@ export class CherryPickError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case CherryPickErrorReason.AbortedWouldOverwrite:
-					message = `${baseMessage} as some local changes would be overwritten.`;
+					message = `${baseMessage}，因为某些本地更改将被覆盖。`;
 					break;
 				case CherryPickErrorReason.Conflicts:
-					message = `${baseMessage} due to conflicts.`;
+					message = `${baseMessage}，因为存在冲突。`;
 					break;
 				default:
 					message = baseMessage;
@@ -393,13 +392,13 @@ export class CherryPickError extends Error {
 
 		this.original = original;
 		this.reason = reason;
-		Error.captureStackTrace?.(this, CherryPickError);
+			Error.captureStackTrace?.(this, CherryPickError);
 	}
 }
 
 export class WorkspaceUntrustedError extends Error {
 	constructor() {
-		super('Unable to perform Git operations because the current workspace is untrusted');
+		super('无法执行 Git 操作，因为当前工作区不受信任');
 
 		Error.captureStackTrace?.(this, WorkspaceUntrustedError);
 	}
@@ -424,7 +423,7 @@ export class WorktreeCreateError extends Error {
 		let message;
 		let reason: WorktreeCreateErrorReason | undefined;
 		if (messageOrReason == null) {
-			message = 'Unable to create worktree';
+			message = '无法创建工作树';
 		} else if (typeof messageOrReason === 'string') {
 			message = messageOrReason;
 			reason = undefined;
@@ -432,10 +431,10 @@ export class WorktreeCreateError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case WorktreeCreateErrorReason.AlreadyCheckedOut:
-					message = 'Unable to create worktree because it is already checked out';
+					message = '无法创建工作树，因为它已经被检出';
 					break;
 				case WorktreeCreateErrorReason.AlreadyExists:
-					message = 'Unable to create worktree because it already exists';
+					message = '无法创建工作树，因为它已经存在';
 					break;
 			}
 		}
@@ -466,7 +465,7 @@ export class WorktreeDeleteError extends Error {
 		let message;
 		let reason: WorktreeDeleteErrorReason | undefined;
 		if (messageOrReason == null) {
-			message = 'Unable to delete worktree';
+			message = '无法删除工作树';
 		} else if (typeof messageOrReason === 'string') {
 			message = messageOrReason;
 			reason = undefined;
@@ -474,10 +473,10 @@ export class WorktreeDeleteError extends Error {
 			reason = messageOrReason;
 			switch (reason) {
 				case WorktreeDeleteErrorReason.HasChanges:
-					message = 'Unable to delete worktree because there are uncommitted changes';
+					message = '无法删除工作树，因为存在未提交的更改';
 					break;
 				case WorktreeDeleteErrorReason.MainWorkingTree:
-					message = 'Unable to delete worktree because it is a main working tree';
+					message = '无法删除工作树，因为它是主工作树';
 					break;
 			}
 		}

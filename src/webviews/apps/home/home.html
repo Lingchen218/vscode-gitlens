@@ -23,34 +23,34 @@
 	>
 		<div class="home__nav">
 			<gl-promo class="promo-banner promo-banner--eyebrow" id="promo" type="link"></gl-promo>
-			<nav class="inline-nav" id="links" aria-label="Help and Resources">
+			<nav class="inline-nav" id="links" aria-label="帮助和资源">
 				<div class="inline-nav__group">
 					<gl-tooltip hoist>
 						<a
 							class="inline-nav__link inline-nav__link--text"
-							href="https://help.gitkraken.com/gitlens/gitlens-release-notes-current/"
-							aria-label="What's New"
-							><code-icon icon="megaphone"></code-icon><span>What's New</span></a
+								href="https://help.gitkraken.com/gitlens/gitlens-release-notes-current/"
+								aria-label="最新动态"
+								><code-icon icon="megaphone"></code-icon><span>最新动态</span></a
 						>
-						<span slot="content">What's New</span>
+						<span slot="content">最新动态</span>
 					</gl-tooltip>
 					<gl-tooltip hoist>
 						<a
 							class="inline-nav__link inline-nav__link--text"
 							href="https://help.gitkraken.com/gitlens/gitlens-home/"
-							aria-label="Help Center"
-							><code-icon icon="question"></code-icon><span>Help</span></a
+							aria-label="帮助中心"
+							><code-icon icon="question"></code-icon><span>帮助</span></a
 						>
-						<span slot="content">Help Center</span>
+						<span slot="content">帮助中心</span>
 					</gl-tooltip>
 					<gl-tooltip hoist>
 						<a
 							class="inline-nav__link inline-nav__link--text"
 							href="https://github.com/gitkraken/vscode-gitlens/issues"
-							aria-label="Feedback"
-							><code-icon icon="feedback"></code-icon><span>Feedback</span></a
+							aria-label="反馈"
+							><code-icon icon="feedback"></code-icon><span>反馈</span></a
 						>
-						<span slot="content">Feedback</span>
+						<span slot="content">反馈</span>
 					</gl-tooltip>
 				</div>
 				<div class="inline-nav__group">
@@ -58,19 +58,19 @@
 						<a
 							class="inline-nav__link"
 							href="https://github.com/gitkraken/vscode-gitlens/discussions"
-							aria-label="GitHub Discussions"
+							aria-label="GitHub 讨论"
 							><code-icon icon="comment-discussion"></code-icon
 						></a>
-						<span slot="content">GitHub Discussions</span>
+						<span slot="content">GitHub 讨论</span>
 					</gl-tooltip>
 					<gl-tooltip hoist>
 						<a
 							class="inline-nav__link"
 							href="https://github.com/gitkraken/vscode-gitlens"
-							aria-label="GitHub Repo"
+							aria-label="GitHub 仓库"
 							><code-icon icon="github"></code-icon
 						></a>
-						<span slot="content">GitHub Repo</span>
+						<span slot="content">GitHub 仓库</span>
 					</gl-tooltip>
 					<gl-tooltip hoist>
 						<a class="inline-nav__link" href="https://twitter.com/gitlens" aria-label="@gitlens on Twitter"
@@ -92,45 +92,43 @@
 		</div>
 		<header class="home__header" id="header" hidden>
 			<div id="no-repo-alert" class="alert alert--info mb-0" aria-hidden="true" hidden>
-				<h1 class="alert__title">No repository detected</h1>
+				<h1 class="alert__title">未检测到仓库</h1>
 				<div class="alert__description">
-					<p>
-						To use GitLens, open a folder containing a git repository or clone from a URL from the Explorer.
-					</p>
+					<p>要使用 GitLens，请从资源管理器中打开包含 git 仓库的文件夹或从 URL 克隆。</p>
 					<p class="centered">
 						<gl-button class="is-basic" href="command:workbench.view.explorer"
-							>Open a Folder or Repository</gl-button
+							>打开文件夹或仓库</gl-button
 						>
 					</p>
 					<p class="mb-0">
-						If you have opened a folder with a repository, please let us know by
+						如果您已经打开了包含仓库的文件夹，请通过
 						<a class="one-line" href="https://github.com/gitkraken/vscode-gitlens/issues/new/choose"
-							>creating an Issue</a
-						>.
+							>创建问题</a
+						>
+						告诉我们。
 					</p>
 				</div>
 			</div>
 			<div id="unsafe-repo-alert" class="alert alert--info mb-0" aria-hidden="true" hidden>
-				<h1 class="alert__title">Unsafe repository</h1>
+				<h1 class="alert__title">不安全的仓库</h1>
 				<div class="alert__description">
 					<p>
-						Unable to open any repositories as Git blocked them as potentially unsafe, due to the folder(s)
-						not being owned by the current user.
+						无法打开任何仓库，因为 Git 将其标记为潜在不安全，原因是文件夹不属于当前用户。
 					</p>
 					<p class="centered">
 						<gl-button class="is-basic" href="command:workbench.view.scm"
-							>代码管理</gl-button
+							>源代码管理</gl-button
 						>
 					</p>
 				</div>
 			</div>
 			<div id="untrusted-alert" class="alert alert--info mb-0" aria-hidden="true" hidden>
-				<h1 class="alert__title">Untrusted workspace</h1>
+				<h1 class="alert__title">不受信任的工作区</h1>
 				<div class="alert__description">
-					<p>Unable to open repositories in Restricted Mode.</p>
+					<p>在受限模式下无法打开仓库。</p>
 					<p class="centered">
 						<gl-button class="is-basic" href="command:workbench.trust.manage"
-							>管理 Workspace Trust</gl-button
+							>管理工作区信任</gl-button
 						>
 					</p>
 				</div>
@@ -143,7 +141,7 @@
 			<div id="section-walkthrough" data-section-expand="walkthrough" class="alert">
 				<h1 class="alert__title">开始使用 GitLens</h1>
 				<div class="alert__description">
-					<p>Explore all of the powerful features in GitLens</p>
+					<p>探索 GitLens 中所有强大的功能</p>
 					<p class="button-container button-container--trio">
 						<gl-button
 							appearance="secondary"
@@ -223,7 +221,7 @@
 				</div>
 			</nav>
 			<nav class="nav-list">
-				<h2 class="nav-list__title t-eyebrow sticky">流行</h2>
+				<h2 class="nav-list__title t-eyebrow sticky">常用功能</h2>
 				<div class="nav-list__item">
 					<a
 						class="nav-list__link"
@@ -382,7 +380,7 @@
 				</div>
 			</nav>
 			<nav class="nav-list">
-				<h2 class="nav-list__title t-eyebrow sticky">Activity Bar</h2>
+				<h2 class="nav-list__title t-eyebrow sticky">活动栏</h2>
 				<div class="nav-list__item">
 					<a
 						class="nav-list__link"
@@ -420,7 +418,7 @@
 				</div>
 			</nav>
 			<nav class="nav-list">
-				<h3 class="nav-list__title t-eyebrow sticky">Commands</h3>
+				<h2 class="nav-list__title t-eyebrow sticky">命令</h2>
 				<div class="nav-list__item">
 					<a
 						class="nav-list__link"

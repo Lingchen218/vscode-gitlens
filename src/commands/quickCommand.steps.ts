@@ -2478,13 +2478,13 @@ function getShowRepositoryStatusStepItems<
 
 	let workingTreeStatus;
 	if (computed.staged === 0 && computed.unstaged === 0) {
-		workingTreeStatus = 'No working tree changes';
+		workingTreeStatus = '工作区无更改';
 	} else {
 		workingTreeStatus = `$(files) ${
-			computed.staged ? `${pluralize('staged file', computed.staged)} (${computed.stagedStatus})` : ''
+			computed.staged ? `${pluralize('个暂存文件', computed.staged)} (${computed.stagedStatus})` : ''
 		}${
 			computed.unstaged
-				? `${computed.staged ? ', ' : ''}${pluralize('unstaged file', computed.unstaged)} (${
+				? `${computed.staged ? ', ' : ''}${pluralize('个未暂存文件', computed.unstaged)} (${
 						computed.unstagedStatus
 				  })`
 				: ''
@@ -2495,28 +2495,28 @@ function getShowRepositoryStatusStepItems<
 		if (context.status.state.ahead === 0 && context.status.state.behind === 0) {
 			items.push(
 				createDirectiveQuickPickItem(Directive.Noop, true, {
-					label: `$(git-branch) ${context.status.branch} is up to date with $(git-branch) ${context.status.upstream?.name}`,
+					label: `$(git-branch) ${context.status.branch} 与 $(git-branch) ${context.status.upstream?.name} 同步`,
 					detail: workingTreeStatus,
 				}),
 			);
 		} else if (context.status.state.ahead !== 0 && context.status.state.behind !== 0) {
 			items.push(
 				createDirectiveQuickPickItem(Directive.Noop, true, {
-					label: `$(git-branch) ${context.status.branch} has diverged from $(git-branch) ${context.status.upstream?.name}`,
+					label: `$(git-branch) ${context.status.branch} 与 $(git-branch) ${context.status.upstream?.name} 已分叉`,
 					detail: workingTreeStatus,
 				}),
 			);
 		} else if (context.status.state.ahead !== 0) {
-			items.push(
-				createDirectiveQuickPickItem(Directive.Noop, true, {
-					label: `$(git-branch) ${context.status.branch} is ahead of $(git-branch) ${context.status.upstream?.name}`,
-					detail: workingTreeStatus,
-				}),
-			);
+				items.push(
+					createDirectiveQuickPickItem(Directive.Noop, true, {
+						label: `$(git-branch) ${context.status.branch} 领先 $(git-branch) ${context.status.upstream?.name}`,
+						detail: workingTreeStatus,
+					}),
+				);
 		} else if (context.status.state.behind !== 0) {
 			items.push(
 				createDirectiveQuickPickItem(Directive.Noop, true, {
-					label: `$(git-branch) ${context.status.branch} is behind $(git-branch) ${context.status.upstream?.name}`,
+					label: `$(git-branch) ${context.status.branch} 落后 $(git-branch) ${context.status.upstream?.name}`,
 					detail: workingTreeStatus,
 				}),
 			);
@@ -2525,7 +2525,7 @@ function getShowRepositoryStatusStepItems<
 		if (context.status.state.behind !== 0) {
 			items.push(
 				new GitCommandQuickPickItem(
-					`$(cloud-download) ${pluralize('commit', context.status.state.behind)} behind`,
+					`$(cloud-download) 落后 ${pluralize('个提交', context.status.state.behind)}`,
 					{
 						command: 'log',
 						state: {
@@ -2543,7 +2543,7 @@ function getShowRepositoryStatusStepItems<
 		if (context.status.state.ahead !== 0) {
 			items.push(
 				new GitCommandQuickPickItem(
-					`$(cloud-upload) ${pluralize('commit', context.status.state.ahead)} ahead`,
+					`$(cloud-upload) 领先 ${pluralize('个提交', context.status.state.ahead)}`,
 					{
 						command: 'log',
 						state: {
@@ -2560,7 +2560,7 @@ function getShowRepositoryStatusStepItems<
 	} else {
 		items.push(
 			createDirectiveQuickPickItem(Directive.Noop, true, {
-				label: `$(git-branch) ${context.status.branch} has no upstream`,
+				label: `$(git-branch) ${context.status.branch} 没有上游分支`,
 				detail: workingTreeStatus,
 			}),
 		);
@@ -2581,23 +2581,23 @@ function getShowRepositoryStatusStepItems<
 	}
 
 	if (computed.staged > 0) {
-		items.push(new OpenChangedFilesCommandQuickPickItem(computed.stagedAddsAndChanges, 'Open Staged Files'));
+		items.push(new OpenChangedFilesCommandQuickPickItem(computed.stagedAddsAndChanges, '打开已暂存文件'));
 
 		items.push(
-			new OpenOnlyChangedFilesCommandQuickPickItem(computed.stagedAddsAndChanges, 'Open Only Staged Files'),
+			new OpenOnlyChangedFilesCommandQuickPickItem(computed.stagedAddsAndChanges, '仅打开已暂存文件'),
 		);
 	}
 
 	if (computed.unstaged > 0) {
-		items.push(new OpenChangedFilesCommandQuickPickItem(computed.unstagedAddsAndChanges, 'Open Unstaged Files'));
+		items.push(new OpenChangedFilesCommandQuickPickItem(computed.unstagedAddsAndChanges, '打开未暂存文件'));
 
 		items.push(
-			new OpenOnlyChangedFilesCommandQuickPickItem(computed.unstagedAddsAndChanges, 'Open Only Unstaged Files'),
+			new OpenOnlyChangedFilesCommandQuickPickItem(computed.unstagedAddsAndChanges, '仅打开未暂存文件'),
 		);
 	}
 
 	if (context.status.files.length) {
-		items.push(new CommandQuickPickItem('Close Unchanged Files', new ThemeIcon('x'), Commands.CloseUnchangedFiles));
+		items.push(new CommandQuickPickItem('关闭未更改的文件', new ThemeIcon('x'), Commands.CloseUnchangedFiles));
 	}
 
 	return items;

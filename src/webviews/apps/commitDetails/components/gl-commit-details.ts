@@ -96,29 +96,29 @@ export class GlCommitDetails extends GlDetailsBase {
 	private renderEmptyContent() {
 		return html`
 			<div class="section section--empty" id="empty">
-				<p>Rich details for commits and stashes are shown as you navigate:</p>
+				<p>在您浏览以下内容时会显示提交和贮藏的详细信息:</p>
 
 				<ul class="bulleted">
-					<li>lines in the text editor</li>
+					<li>文本编辑器中的行</li>
 					<li>
-						commits in the <a href="command:gitlens.showGraph">Commit Graph</a>,
-						<a href="command:gitlens.showTimelineView">Visual File History</a>, or
-						<a href="command:gitlens.showCommitsView">Commits view</a>
+						<a href="command:gitlens.showGraph">提交图表</a>、
+						<a href="command:gitlens.showTimelineView">可视化文件历史</a>或
+						<a href="command:gitlens.showCommitsView">提交视图</a>中的提交
 					</li>
-					<li>stashes in the <a href="command:gitlens.showStashesView">Stashes view</a></li>
+					<li><a href="command:gitlens.showStashesView">贮藏视图</a>中的贮藏</li>
 				</ul>
 
-				<p>Alternatively, show your work-in-progress, or search for or choose a commit</p>
+				<p>或者,显示您的工作进度,或搜索/选择一个提交</p>
 
 				<p class="button-container">
 					<span class="button-group button-group--single">
-						<gl-button full data-action="wip">Overview</gl-button>
+						<gl-button full data-action="wip">概览</gl-button>
 					</span>
 				</p>
 				<p class="button-container">
 					<span class="button-group button-group--single">
-						<gl-button full data-action="pick-commit">Choose Commit...</gl-button>
-						<gl-button density="compact" data-action="search-commit" tooltip="Search for Commit"
+						<gl-button full data-action="pick-commit">选择提交...</gl-button>
+						<gl-button density="compact" data-action="search-commit" tooltip="搜索提交"
 							><code-icon icon="search"></code-icon
 						></gl-button>
 					</span>
@@ -170,7 +170,7 @@ export class GlCommitDetails extends GlDetailsBase {
 	}
 
 	private renderJiraLink() {
-		if (this.state == null) return 'Jira issues';
+		if (this.state == null) return 'Jira 问题';
 
 		const { hasAccount, hasConnectedJira } = this.state;
 
@@ -185,18 +185,18 @@ export class GlCommitDetails extends GlDetailsBase {
 						},
 					} satisfies ConnectCloudIntegrationsCommandArgs),
 				)}"
-				>Connect to Jira Cloud</a
+				>连接到 Jira Cloud</a
 			>
-			&mdash; ${hasAccount ? '' : 'sign up and '}get access to automatic rich Jira autolinks`;
+			&mdash; ${hasAccount ? '' : '注册并 '}获取自动 Jira 富文本链接访问权限`;
 
 		if (hasAccount && hasConnectedJira) {
-			message = html`<i class="codicon codicon-check" style="vertical-align: text-bottom"></i> Jira connected
-				&mdash; automatic rich Jira autolinks are enabled`;
+			message = html`<i class="codicon codicon-check" style="vertical-align: text-bottom"></i> Jira 已连接
+				&mdash; 已启用自动 Jira 富文本链接`;
 		}
 
 		return html`<gl-popover hoist class="inline-popover">
 			<span class="tooltip-hint" slot="anchor"
-				>Jira issues <code-icon icon="${hasConnectedJira ? 'check' : 'gl-unplug'}"></code-icon
+				>Jira 问题 <code-icon icon="${hasConnectedJira ? 'check' : 'gl-unplug'}"></code-icon
 			></span>
 			<span slot="content">${message}</span>
 		</gl-popover>`;
@@ -274,22 +274,22 @@ export class GlCommitDetails extends GlDetailsBase {
 				?loading=${!this.state?.includeRichContent}
 				data-region="rich-pane"
 			>
-				<span slot="title">Autolinks</span>
+				<span slot="title">自动链接</span>
 				<span slot="subtitle" data-region="autolink-count"
-					>${this.state?.includeRichContent || deduped.size ? `${deduped.size} found ` : ''}${this.state
+					>${this.state?.includeRichContent || deduped.size ? `找到 ${deduped.size} 个` : ''}${this.state
 						?.includeRichContent
 						? ''
 						: '…'}</span
 				>
 				<action-nav slot="actions">
 					<action-item
-						label="${hasAccount && hasConnectedJira ? 'Manage Jira' : 'Connect to Jira Cloud'}"
+						label="${hasAccount && hasConnectedJira ? '管理 Jira' : '连接到 Jira Cloud'}"
 						icon="gl-provider-jira"
 						href="${jiraIntegrationLink}"
 					></action-item>
 					<action-item
 						data-action="autolinks-settings"
-						label="Autolinks Settings"
+						label="自动链接设置"
 						icon="gear"
 						href="command:gitlens.showSettingsPage!autolinks"
 					></action-item>
@@ -314,17 +314,16 @@ export class GlCommitDetails extends GlDetailsBase {
 							return html`
 								<div class="section" data-region="rich-info">
 									<p>
-										<code-icon icon="info"></code-icon>&nbsp;Use
+										<code-icon icon="info"></code-icon>&nbsp;使用
 										<gl-tooltip hoist>
 											<a
 												href="command:gitlens.showSettingsPage!autolinks"
 												data-action="autolink-settings"
-												>autolinks</a
+												>自动链接</a
 											>
-											<span slot="content">Configure autolinks</span>
+											<span slot="content">配置自动链接</span>
 										</gl-tooltip>
-										to linkify external references, like ${this.renderJiraLink()} or Zendesk
-										tickets, in commit messages.
+										来链接提交消息中的外部引用,如 ${this.renderJiraLink()} 或 Zendesk 工单。
 									</p>
 								</div>
 							`;
@@ -504,7 +503,7 @@ export class GlCommitDetails extends GlDetailsBase {
 		const actions = [
 			{
 				icon: 'go-to-file',
-				label: 'Open file',
+				label: '打开文件',
 				action: 'file-open',
 			},
 		];
@@ -515,20 +514,20 @@ export class GlCommitDetails extends GlDetailsBase {
 
 		actions.push({
 			icon: 'git-compare',
-			label: 'Open Changes with Working File',
+			label: '与工作文件比较更改',
 			action: 'file-compare-working',
 		});
 
 		if (!this.isStash) {
 			actions.push({
 				icon: 'globe',
-				label: 'Open on remote',
+				label: '在远程打开',
 				action: 'file-open-on-remote',
 			});
 		}
 		actions.push({
 			icon: 'ellipsis',
-			label: 'Show more actions',
+			label: '显示更多操作',
 			action: 'file-more-actions',
 		});
 		return actions;
